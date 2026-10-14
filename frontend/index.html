@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PostMax · API 测试工具</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <script src="./vendor/crypto-js.min.js"></script>
+  <script src="./vendor/beautify.min.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "./vendor/vue.esm-browser.prod.js",
+        "js-yaml": "./vendor/js-yaml.mjs"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- 兜底：任何加载 / 编译错误都直接显示在页面上，避免只看到白屏 -->
+  <script>
+    function showFatal(message, detail) {
+      const el = document.getElementById('app');
+      if (!el || el.querySelector('.app')) return;
+      el.innerHTML =
+        '<pre style="margin:0;padding:20px;color:#dc2626;font:12px/1.7 ui-monospace,Consolas,monospace;white-space:pre-wrap">' +
+        '页面加载出错：\n' + message + (detail ? '\n\n' + detail : '') +
+        '</pre>';
+    }
+    window.addEventListener('error', function (e) {
+      showFatal(e.message || '未知错误', (e.filename || '') + ':' + (e.lineno || ''));
+    });
+    window.addEventListener('unhandledrejection', function (e) {
+      showFatal('未处理的 Promise 异常', e.reason && (e.reason.stack || e.reason.message) || String(e.reason));
+    });
+  </script>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

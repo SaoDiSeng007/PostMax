@@ -1,0 +1,9 @@
+{
+  "name": "postmax",
+  "private": true,
+  "type": "module",
+  "description": "前端是浏览器直接加载的 ESM，不需要构建。这个 package.json 只为了让 Node 能直接跑 frontend/js 下的模块（测试用）。",
+  "scripts": {
+    "test": "node --test \"tests/*.test.js\""
+  }
+}

@@ -1,0 +1,6 @@
+# 上界不是随手的洁癖：proxy.py 用了 requests/urllib3 的私有结构
+# （连接类替换、sock._real_close），大版本升级可能静默废掉「终止掐上游」。
+# 升级前先跑 tests/test_proxy.py 的 TestAbort。
+Flask>=3.0,<4.0
+requests>=2.31,<3.0
+urllib3>=2.0,<3.0
