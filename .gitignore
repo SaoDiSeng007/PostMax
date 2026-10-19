@@ -1,0 +1,48 @@
+# 临时校验目录（开发时用，不进仓库）
+.tmp-check/
+_autotest/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+build/
+dist/
+*.spec
+
+# Node（只在本地跑校验脚本时用到）
+node_modules/
+package-lock.json
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 运行时数据：后端生成的存档，不该进仓库
+data/
+
+# 本地草稿
+postmax.txt
+*.log
+
+# AI 协作留下的工作笔记（架构备忘 / 每日记录），属于本机工具状态，不进仓库
+.workbuddy-ai/
+
+# 推送脚本要顺带快进的「本机其它工作副本」清单：只对本机有意义
+.sync-copies
+
+# QA 套件与本地自用的导出测试：留本地，不进仓库
+qa/
+tests/openapi-export.test.js
+tests/openapi-roundtrip.test.js
+
+# 桌面版打包（packaging/）：构建产物，机器相关，不进仓库。
+# 源码要提交，产物不要 —— 安装包几十 MB，且只有打出来的那台机器能复现
+packaging/.build/
+packaging/.venv/
+packaging/src-tauri/target/
+packaging/src-tauri/gen/
+packaging/src-tauri/binaries/

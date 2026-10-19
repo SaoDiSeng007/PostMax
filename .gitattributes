@@ -1,0 +1,18 @@
+# 批处理文件按原样存取，别做换行转换。
+#
+# 为什么不加这条会出事：仓库开着 core.autocrlf=true，提交时会把 CRLF 压成 LF
+# 存进仓库，只在检出到工作区时再转回来 —— 本机自己用完全看不出问题。
+# 但 GitHub 的「Download ZIP」发的是仓库里存的那些字节（LF），用户解压后拿到
+# 的就是一个纯 LF 的 .bat，Windows 的 cmd.exe 解析这种文件会错乱，报出
+# 「'姝ｅ湪鍚姩' 不是内部或外部命令」这类乱码错误，双击根本起不来。
+#
+# -text 表示「不做任何换行转换」：仓库里存的就是磁盘上的 CRLF，谁下载都是 CRLF。
+*.bat -text
+*.cmd -text
+
+# 脚本反过来，必须是 LF。
+#
+# 同一个 core.autocrlf=true 的问题在另一头：.sh 检出时若被转成 CRLF，
+# Git Bash 会把行尾的 \r 当成命令的一部分，报出
+# 「$'\r': command not found」然后整个脚本跑不动。所以钉死 LF。
+*.sh text eol=lf

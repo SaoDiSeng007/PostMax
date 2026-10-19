@@ -1,0 +1,16 @@
+{
+  "name": "postmax-desktop",
+  "private": true,
+  "version": "1.0.0",
+  "description": "PostMax 桌面外壳（Tauri）：窗口 + 自带后端，双击即用，不需要装 Python / 浏览器。",
+  "scripts": {
+    "backend": "node build-backend.mjs",
+    "dev": "npm run backend && tauri dev",
+    "build": "npm run backend && tauri build",
+    "portable": "node make-portable.mjs",
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0"
+  }
+}

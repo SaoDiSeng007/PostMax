@@ -1,0 +1,21 @@
+[package]
+name = "postmax"
+version = "1.0.0"
+description = "PostMax · API 测试工具"
+authors = ["PostMax"]
+edition = "2021"
+rust-version = "1.77"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+# sidecar：把 PyInstaller 打出来的后端 exe 当子进程拉起来
+tauri-plugin-shell = "2"
+serde_json = "1"
+
+[profile.release]
+codegen-units = 1
+opt-level = "s"
+strip = true
